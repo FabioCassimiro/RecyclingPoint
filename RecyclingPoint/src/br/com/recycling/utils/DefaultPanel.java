@@ -15,6 +15,7 @@ public class DefaultPanel extends JPanel {
         setSize(500, 800);
         setBackground(DefaultComponents.primaryColor);
         add(buttonClose());
+        setLayout(null);
         
     }
     

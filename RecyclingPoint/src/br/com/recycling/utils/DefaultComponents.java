@@ -1,21 +1,84 @@
-
 package br.com.recycling.utils;
 
 import java.awt.Color;
 import java.awt.Font;
-import javax.swing.JOptionPane;
+import java.text.ParseException;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
  * @author WINDOWS
  */
 public class DefaultComponents {
-    
-    public static Color primaryColor = new Color(32,178,170);
-    public static Color secundaryColor = new Color(0,139,139);
-    public static Color textColor = new Color(255,255,255);
+
+    public static Color primaryColor = new Color(32, 178, 170);
+    public static Color secundaryColor = new Color(0, 139, 139);
+    public static Color textColor = new Color(255, 255, 255);
     public static Font fontText = new Font("Arial", Font.BOLD, 30);
-    
-    
-    
+    public static Font fontTextLabel = new Font("Arial", Font.BOLD, 18);
+    public static Font fontTextButtons = new Font("Arial", Font.BOLD, 20);
+    public static Font fontTextFields = new Font("Arial", Font.BOLD, 16);
+
+    public static MaskFormatter mask(String mask) {
+        MaskFormatter maskFormatter = null;
+        try {
+            return maskFormatter = new MaskFormatter(mask);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public static JTextField defaultFields(int positionX, int positionY) {
+        JTextField txfDefault = new JTextField();
+        txfDefault.setBounds(positionX, positionY, 440, 35);
+        txfDefault.setFont(DefaultComponents.fontTextFields);
+        txfDefault.setBackground(Color.WHITE);
+        txfDefault.setForeground(DefaultComponents.secundaryColor);
+        txfDefault.setBorder(null);
+
+        return txfDefault;
+    }
+
+    public static JPasswordField defaultFieldsPassword(int positionX, int positionY) {
+        JPasswordField pwdDefault = new JPasswordField();
+        pwdDefault.setBounds(positionX, positionY, 440, 35);
+        pwdDefault.setFont(DefaultComponents.fontTextFields);
+        pwdDefault.setBackground(Color.WHITE);
+        pwdDefault.setForeground(DefaultComponents.secundaryColor);
+        pwdDefault.setBorder(null);
+
+        return pwdDefault;
+    }
+
+    public static JLabel defaultLabels(String text, Font font, int positionX, int positionY, int width, int height) {
+        JLabel lblDefault = new JLabel(text);
+        lblDefault.setFont(font);
+        lblDefault.setForeground(textColor);
+        lblDefault.setBounds(positionX, positionY, width, height);
+        return lblDefault;
+    }
+
+    public ImageIcon searchImage(String filename) {
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/br/com/recycling/image/" + filename));
+        return imageIcon;
+    }
+
+    public static JButton defaultButton(String text, Color color, int positionX, int positionY, int width, int height) {
+        JButton btnDefault = new JButton(text);
+        btnDefault.setBounds(positionX, positionY, width, height);
+        btnDefault.setBackground(color);
+        btnDefault.setForeground(Color.WHITE);
+        btnDefault.setBorder(null);
+        btnDefault.setFocusPainted(false);
+        btnDefault.setFont(fontTextButtons);
+
+        return btnDefault;
+    }
 }
