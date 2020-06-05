@@ -32,7 +32,7 @@ public class DefaultPanel extends JPanel {
             }
         });
         
-        add(DefaultComponents.defaultLabels("Recycling", new Font("Arial", Font.BOLD, 40), 150, 20, 200, 45));
+        add(DefaultComponents.defaultLabels("Recycling", new Font("Arial", Font.BOLD, 40), 150, 10, 200, 45));
         add(buttonClose);
     }
 }
