@@ -59,6 +59,7 @@ public class Recycling extends JFrame implements ClassInterface {
     @Override
     public void buttons() {
         JButton btnRecycling = DefaultComponents.defaultButton("", Color.WHITE, 210, 675, 80, 80);
+        btnRecycling.setContentAreaFilled(false);
         btnRecycling.setIcon(components.searchImage("Recycling.png"));
 
         pnlRecycling.add(btnRecycling);

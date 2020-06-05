@@ -51,6 +51,7 @@ public class Login extends JFrame implements ClassInterface {
     @Override
     public void buttons() {
         JButton btnRegister = DefaultComponents.defaultButton("Register", DefaultComponents.secundaryColor, 175, 700, 150, 35);
+        btnRegister.setContentAreaFilled(false);
         btnRegister.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
