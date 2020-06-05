@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author WINDOWS
+ * @author Fabio Cassimiro
  */
 public class Register extends JFrame {
 
@@ -35,8 +35,6 @@ public class Register extends JFrame {
         
         panelRegisterInit();
         setSize(500, 800);
-        setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setUndecorated(true);
         setVisible(true);
@@ -92,8 +90,7 @@ public class Register extends JFrame {
         btnRegister.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String[] informations = {txfCPF.getText(), txfName.getText(), txfLastName.getText(), txfEmailAddress.getText(), txfUsername.getText(), pwdPassword.getText(), "04/06"};
-                controller.createUser(informations);
+                //Colocar a ação de salvar cadastro
             }
         });
 
@@ -102,13 +99,7 @@ public class Register extends JFrame {
         btnLockerSearch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (txfCPF.isEnabled() == true) {
-                    btnLockerSearch.setIcon(components.searchImage("locked.png"));
-                } else {
-                    btnLockerSearch.setIcon(components.searchImage("openlock.png"));
-                    txfCPF.setEnabled(true);
-                }
-
+                //Colocar ação da troca de cadeado
             }
         });
         pnlRegister.add(btnRegister);

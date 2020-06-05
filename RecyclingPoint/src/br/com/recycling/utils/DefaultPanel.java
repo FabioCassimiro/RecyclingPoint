@@ -11,15 +11,11 @@ import javax.swing.JPanel;
 
 public class DefaultPanel extends JPanel {
     
-    DefaultComponents components = new DefaultComponents();
-
     public DefaultPanel() {
-        
         setSize(500, 800);
         setBackground(DefaultComponents.primaryColor);
         buttonClose();
         setLayout(null);
-        
         
     }
     
@@ -37,7 +33,4 @@ public class DefaultPanel extends JPanel {
 
         add(buttonClose);
     }
-    
-    
-   
 }
