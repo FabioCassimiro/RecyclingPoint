@@ -10,16 +10,20 @@ import javax.swing.JPanel;
  */
 
 public class DefaultPanel extends JPanel {
+    
+    DefaultComponents components = new DefaultComponents();
 
     public DefaultPanel() {
+        
         setSize(500, 800);
         setBackground(DefaultComponents.primaryColor);
-        add(buttonClose());
+        buttonClose();
         setLayout(null);
+        
         
     }
     
-    private JLabel buttonClose(){
+    private void buttonClose(){
         JLabel buttonClose = new JLabel("X");
         buttonClose.setFont(DefaultComponents.fontText);
         buttonClose.setBounds(470, 10, 25, 25);
@@ -31,6 +35,9 @@ public class DefaultPanel extends JPanel {
             }
         });
 
-        return buttonClose;
+        add(buttonClose);
     }
+    
+    
+   
 }

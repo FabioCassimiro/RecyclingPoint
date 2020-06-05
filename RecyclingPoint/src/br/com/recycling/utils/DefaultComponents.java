@@ -6,6 +6,7 @@ import java.text.ParseException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -80,5 +81,15 @@ public class DefaultComponents {
         btnDefault.setFont(fontTextButtons);
 
         return btnDefault;
+    }
+    
+     public  void image(JPanel panel){
+        JLabel imageTree = new JLabel(searchImage("Tree.png"));
+        imageTree.setBounds(200,500,400,400);
+        JLabel imageInvertedTree = new JLabel(searchImage("InvertedTree.png"));
+        imageInvertedTree.setBounds(-100,-80,400,400);
+        
+        panel.add(imageTree);
+        panel.add(imageInvertedTree);
     }
 }

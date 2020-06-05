@@ -4,6 +4,7 @@ import br.com.recycling.controller.ControllerRegister;
 import br.com.recycling.utils.DefaultComponents;
 import br.com.recycling.utils.DefaultPanel;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -17,9 +18,11 @@ import javax.swing.JTextField;
  * @author WINDOWS
  */
 public class Register extends JFrame {
+
     public boolean enableFields = true;
     DefaultPanel pnlRegister = new DefaultPanel();
     ControllerRegister controller = new ControllerRegister();
+    DefaultComponents components = new DefaultComponents();
     JTextField txfCPF;
     JTextField txfName;
     JTextField txfLastName;
@@ -29,8 +32,8 @@ public class Register extends JFrame {
     JPasswordField pwdConfirmPassword;
 
     public Register() {
-        panelRegister();
-        add(pnlRegister);
+        
+        panelRegisterInit();
         setSize(500, 800);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,12 +43,12 @@ public class Register extends JFrame {
 
     }
 
-    public void panelRegister() {
+    public void panelRegisterInit() {
+        add(pnlRegister);
         fields();
         labels();
         buttons();
-
-        //pnlRegister.add(nome);
+        components.image(pnlRegister);
     }
 
     public void fields() {
@@ -73,6 +76,7 @@ public class Register extends JFrame {
     }
 
     public void labels() {
+        pnlRegister.add(DefaultComponents.defaultLabels("Recycling", new Font("Arial", Font.BOLD, 40), 150, 20, 200, 45));
         pnlRegister.add(DefaultComponents.defaultLabels("CPF:", DefaultComponents.fontTextLabel, 90, 120, 60, 30));
         pnlRegister.add(DefaultComponents.defaultLabels("Name:", DefaultComponents.fontTextLabel, 30, 185, 100, 30));
         pnlRegister.add(DefaultComponents.defaultLabels("Last Name:", DefaultComponents.fontTextLabel, 30, 260, 100, 30));
@@ -88,11 +92,11 @@ public class Register extends JFrame {
         btnRegister.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String []informations = {txfCPF.getText(),txfName.getText(),txfLastName.getText(),txfEmailAddress.getText(),txfUsername.getText(),pwdPassword.getText(),"04/06"};
+                String[] informations = {txfCPF.getText(), txfName.getText(), txfLastName.getText(), txfEmailAddress.getText(), txfUsername.getText(), pwdPassword.getText(), "04/06"};
                 controller.createUser(informations);
             }
         });
-        
+
         JButton btnLockerSearch = DefaultComponents.defaultButton("", Color.WHITE, 370, 120, 35, 35);
         btnLockerSearch.setIcon(components.searchImage("openlock.png"));
         btnLockerSearch.addActionListener(new ActionListener() {
