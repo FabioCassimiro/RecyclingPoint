@@ -1,5 +1,6 @@
 package br.com.recycling.utils;
 
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -30,7 +31,8 @@ public class DefaultPanel extends JPanel {
                 System.exit(0);
             }
         });
-
+        
+        add(DefaultComponents.defaultLabels("Recycling", new Font("Arial", Font.BOLD, 40), 150, 20, 200, 45));
         add(buttonClose);
     }
 }

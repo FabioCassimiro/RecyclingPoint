@@ -1,6 +1,7 @@
 package br.com.recycling.viewer;
 
 import br.com.recycling.controller.ControllerRegister;
+import br.com.recycling.utils.ClassInterface;
 import br.com.recycling.utils.DefaultComponents;
 import br.com.recycling.utils.DefaultPanel;
 import java.awt.Color;
@@ -17,7 +18,7 @@ import javax.swing.JTextField;
  *
  * @author Fabio Cassimiro
  */
-public class Register extends JFrame {
+public class Register extends JFrame implements ClassInterface{
 
     public boolean enableFields = true;
     DefaultPanel pnlRegister = new DefaultPanel();
@@ -33,7 +34,7 @@ public class Register extends JFrame {
 
     public Register() {
         
-        panelRegisterInit();
+        panelInit();
         setSize(500, 800);
         setLocationRelativeTo(null);
         setUndecorated(true);
@@ -41,7 +42,8 @@ public class Register extends JFrame {
 
     }
 
-    public void panelRegisterInit() {
+    @Override
+    public void panelInit() {
         add(pnlRegister);
         fields();
         labels();
@@ -49,6 +51,7 @@ public class Register extends JFrame {
         components.image(pnlRegister);
     }
 
+    @Override
     public void fields() {
         txfCPF = new JFormattedTextField(DefaultComponents.mask("###.###.###-##"));
         txfCPF.setBounds(140, 120, 220, 35);
@@ -73,8 +76,8 @@ public class Register extends JFrame {
         pnlRegister.add(pwdConfirmPassword);
     }
 
+    @Override
     public void labels() {
-        pnlRegister.add(DefaultComponents.defaultLabels("Recycling", new Font("Arial", Font.BOLD, 40), 150, 20, 200, 45));
         pnlRegister.add(DefaultComponents.defaultLabels("CPF:", DefaultComponents.fontTextLabel, 90, 120, 60, 30));
         pnlRegister.add(DefaultComponents.defaultLabels("Name:", DefaultComponents.fontTextLabel, 30, 185, 100, 30));
         pnlRegister.add(DefaultComponents.defaultLabels("Last Name:", DefaultComponents.fontTextLabel, 30, 260, 100, 30));
@@ -84,6 +87,7 @@ public class Register extends JFrame {
         pnlRegister.add(DefaultComponents.defaultLabels("Confirm Password:", DefaultComponents.fontTextLabel, 30, 560, 200, 30));
     }
 
+    @Override
     public void buttons() {
         DefaultComponents components = new DefaultComponents();
         JButton btnRegister = DefaultComponents.defaultButton("Register", DefaultComponents.secundaryColor, 175, 700, 150, 35);

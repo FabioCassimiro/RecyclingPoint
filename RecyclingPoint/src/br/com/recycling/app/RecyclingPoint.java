@@ -1,6 +1,7 @@
 
 package br.com.recycling.app;
 
+import br.com.recycling.viewer.Login;
 import br.com.recycling.viewer.Register;
 
 /**
@@ -9,6 +10,6 @@ import br.com.recycling.viewer.Register;
  */
 public class RecyclingPoint {
     public static void main(String[] args) {
-        new Register();
+        new Login();
     }
 }
