@@ -1,5 +1,6 @@
 package br.com.recycling.viewer;
 
+import br.com.recycling.controller.ControllerRegister;
 import br.com.recycling.utils.DefaultComponents;
 import br.com.recycling.utils.DefaultPanel;
 import java.awt.Color;
@@ -18,6 +19,7 @@ import javax.swing.JTextField;
 public class Register extends JFrame {
     public boolean enableFields = true;
     DefaultPanel pnlRegister = new DefaultPanel();
+    ControllerRegister controller = new ControllerRegister();
     JTextField txfCPF;
     JTextField txfName;
     JTextField txfLastName;
@@ -55,15 +57,10 @@ public class Register extends JFrame {
         txfCPF.setBorder(null);
 
         txfName = DefaultComponents.defaultFields(30, 215);
-        txfName.setEnabled(enableFields);
         txfLastName = DefaultComponents.defaultFields(30, 290);
-        txfLastName.setEnabled(enableFields);
         txfEmailAddress = DefaultComponents.defaultFields(30, 365);
-        txfEmailAddress.setEnabled(enableFields);
         txfUsername = DefaultComponents.defaultFields(30, 440);
-        txfUsername.setEnabled(enableFields);
         pwdPassword = DefaultComponents.defaultFieldsPassword(30, 515);
-        pwdPassword.setEnabled(enableFields);
         pwdConfirmPassword = DefaultComponents.defaultFieldsPassword(30, 590);
 
         pnlRegister.add(txfCPF);
@@ -87,7 +84,15 @@ public class Register extends JFrame {
 
     public void buttons() {
         DefaultComponents components = new DefaultComponents();
-        JButton btnCadastrar = DefaultComponents.defaultButton("Register", DefaultComponents.secundaryColor, 175, 700, 150, 35);
+        JButton btnRegister = DefaultComponents.defaultButton("Register", DefaultComponents.secundaryColor, 175, 700, 150, 35);
+        btnRegister.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String []informations = {txfCPF.getText(),txfName.getText(),txfLastName.getText(),txfEmailAddress.getText(),txfUsername.getText(),pwdPassword.getText(),"04/06"};
+                controller.createUser(informations);
+            }
+        });
+        
         JButton btnLockerSearch = DefaultComponents.defaultButton("", Color.WHITE, 370, 120, 35, 35);
         btnLockerSearch.setIcon(components.searchImage("openlock.png"));
         btnLockerSearch.addActionListener(new ActionListener() {
@@ -95,7 +100,6 @@ public class Register extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (txfCPF.isEnabled() == true) {
                     btnLockerSearch.setIcon(components.searchImage("locked.png"));
-                    txfCPF.setEnabled(false);
                 } else {
                     btnLockerSearch.setIcon(components.searchImage("openlock.png"));
                     txfCPF.setEnabled(true);
@@ -103,7 +107,7 @@ public class Register extends JFrame {
 
             }
         });
-        pnlRegister.add(btnCadastrar);
+        pnlRegister.add(btnRegister);
         pnlRegister.add(btnLockerSearch);
     }
 

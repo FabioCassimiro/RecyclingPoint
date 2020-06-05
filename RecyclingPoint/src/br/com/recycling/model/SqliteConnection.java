@@ -61,15 +61,18 @@ public class SqliteConnection {
                 counting++;
             }
         }
-
+        System.out.println(insertQuery);
+        
         counting = 0;
-
+        System.out.println(counting);
         while (counting < fields.length) {
             if (counting == (fields.length - 1)) {
                 insertQuery += "'" + values[counting] + "')";
+                System.out.println(insertQuery);
                 counting++;
             } else {
                 insertQuery += "'" + values[counting] + "'" + ",";
+                System.out.println(insertQuery);
                 counting++;
             }
         }
