@@ -16,7 +16,7 @@ import javax.swing.JLabel;
  */
 public class Score extends JFrame implements ClassInterface{
     
-    DefaultPanel pnlPunctuation = new DefaultPanel();
+    DefaultPanel pnlScore = new DefaultPanel();
     DefaultComponents components = new DefaultComponents();
     JLabel trashCan;
     JLabel lblItem;
@@ -33,30 +33,30 @@ public class Score extends JFrame implements ClassInterface{
 
     @Override
     public void panelInit() {
-        add(pnlPunctuation);
+        add(pnlScore);
         labels();
         buttons();
         fields();
-        components.image(pnlPunctuation);
+        components.image(pnlScore);
         
     }
 
     @Override
     public void labels() {
-        pnlPunctuation.add(DefaultComponents.defaultLabels("Congratulations on your beautiful attitude.", new Font("Arial", Font.BOLD, 20), 45, 650, 405, 30));
-        pnlPunctuation.add(DefaultComponents.defaultLabels("Generated Score:", new Font("Arial", Font.BOLD, 30), 120, 100, 255, 35));
+        pnlScore.add(DefaultComponents.defaultLabels("Congratulations on your beautiful attitude.", new Font("Arial", Font.BOLD, 20), 45, 650, 405, 30));
+        pnlScore.add(DefaultComponents.defaultLabels("Generated Score:", new Font("Arial", Font.BOLD, 30), 120, 100, 255, 35));
         lblScore = DefaultComponents.defaultLabels("", new Font("Arial", Font.BOLD, 30), 215, 140, 100, 35);
         lblScore.setText("500");//provisorio
-        pnlPunctuation.add(DefaultComponents.defaultLabels("Item:", new Font("Arial", Font.BOLD, 30), 210, 250, 80, 35));
+        pnlScore.add(DefaultComponents.defaultLabels("Item:", new Font("Arial", Font.BOLD, 30), 210, 250, 80, 35));
         lblItem = DefaultComponents.defaultLabels("", new Font("Arial", Font.BOLD, 30), 100, 290, 300, 35);
         lblItem.setText("Lata de Refrigerante");//provisorio
-        pnlPunctuation.add(DefaultComponents.defaultLabels("Trash Can:", new Font("Arial", Font.BOLD, 30), 165, 370, 170, 35));
+        pnlScore.add(DefaultComponents.defaultLabels("Trash Can:", new Font("Arial", Font.BOLD, 30), 165, 370, 170, 35));
         trashCan = DefaultComponents.defaultLabels("", null, 195, 410, 110, 160);
         trashCan.setIcon(components.searchImage("lataVidro.png")); //provisorio
         
-        pnlPunctuation.add(trashCan);
-        pnlPunctuation.add(lblItem);
-        pnlPunctuation.add(lblScore);
+        pnlScore.add(trashCan);
+        pnlScore.add(lblItem);
+        pnlScore.add(lblScore);
     }
 
     @Override
@@ -74,6 +74,6 @@ public class Score extends JFrame implements ClassInterface{
             }
         });
         
-        pnlPunctuation.add(btnNext);
+        pnlScore.add(btnNext);
     }
 }
