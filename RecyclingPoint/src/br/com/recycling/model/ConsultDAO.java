@@ -1,4 +1,3 @@
-
 package br.com.recycling.model;
 
 import java.sql.ResultSet;
@@ -12,16 +11,19 @@ import java.util.logging.Logger;
  * @author WINDOWS
  */
 public class ConsultDAO {
-    
-    
-    public void consultUser(String[] informations){
-        String[] fields = {"CPF"};
+
+    public boolean consultUser(String field, String value) {
+        String[] fields = {field};
+        String[] values = {value};
+        ResultSet row;
         try {
             Statement statement = SqliteConnection.conection().createStatement();
-            ResultSet row = statement.executeQuery(SqliteConnection.commandSelect("TB_USER", fields, informations));
-            System.out.println(row.getRow());
+            row = statement.executeQuery(SqliteConnection.commandSelect("TB_USER", fields, values));
+            return row.next();
+
         } catch (SQLException ex) {
-            Logger.getLogger(ConsultDAO.class.getName()).log(Level.SEVERE, null, ex);
+            //Adicionar tratamento de exception
         }
+        return false;
     }
 }

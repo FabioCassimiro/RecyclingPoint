@@ -1,16 +1,22 @@
 package br.com.recycling.viewer;
 
 import br.com.recycling.controller.ControllerRegister;
+import br.com.recycling.exception.InvalidEmailAddress;
+import br.com.recycling.exception.InvalidRegistration;
+import br.com.recycling.exception.PasswordsDontMatch;
+import br.com.recycling.exception.RegisteredUserException;
 import br.com.recycling.utils.ClassInterface;
 import br.com.recycling.utils.DefaultComponents;
 import br.com.recycling.utils.DefaultPanel;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -18,7 +24,7 @@ import javax.swing.JTextField;
  *
  * @author Fabio Cassimiro
  */
-public class Register extends JFrame implements ClassInterface{
+public class Register extends JFrame implements ClassInterface {
 
     public boolean enableFields = true;
     DefaultPanel pnlRegister = new DefaultPanel();
@@ -31,9 +37,10 @@ public class Register extends JFrame implements ClassInterface{
     JTextField txfUsername;
     JPasswordField pwdPassword;
     JPasswordField pwdConfirmPassword;
+    JButton btnLockerSearch;
 
     public Register() {
-        
+
         panelInit();
         setSize(500, 800);
         setLocationRelativeTo(null);
@@ -89,25 +96,78 @@ public class Register extends JFrame implements ClassInterface{
 
     @Override
     public void buttons() {
-        DefaultComponents components = new DefaultComponents();
         JButton btnRegister = DefaultComponents.defaultButton("Register", DefaultComponents.secundaryColor, 175, 700, 150, 35);
         btnRegister.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Colocar a ação de salvar cadastro
+                createUser();
             }
         });
 
-        JButton btnLockerSearch = DefaultComponents.defaultButton("", Color.WHITE, 370, 120, 35, 35);
+        btnLockerSearch = DefaultComponents.defaultButton("", Color.WHITE, 370, 120, 35, 35);
         btnLockerSearch.setIcon(components.searchImage("openlock.png"));
         btnLockerSearch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Colocar ação da troca de cadeado
+                verifyCPFUser();
             }
         });
         pnlRegister.add(btnRegister);
         pnlRegister.add(btnLockerSearch);
     }
 
+    public void veriftUser() throws InvalidRegistration {
+        try {
+            controller.UserRegistered(txfUsername.getText());
+            controller.validEmailAddress(txfEmailAddress.getText());
+            controller.validPassword(pwdPassword.getText(), pwdConfirmPassword.getText());
+        } catch (RegisteredUserException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        } catch (InvalidEmailAddress ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        } catch (PasswordsDontMatch ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+
+    }
+
+    public void createUser() {
+
+        try {
+            veriftUser();
+            String[] informations = {txfCPF.getText(), txfName.getText(), txfLastName.getText(),
+                "", txfUsername.getText(), pwdPassword.getText(), "06/06"};
+            //controller.createUser(informations);
+        } catch (InvalidRegistration ex) {
+            Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void verifyCPFUser() {
+
+        if (!txfCPF.getText().equals("   .   .   -  ")) {
+
+            try {
+
+                if (btnLockerSearch.getIcon().toString().endsWith("openlock.png")) {
+                    controller.CPFRegistered(txfCPF.getText());
+                    txfCPF.setEnabled(false);
+                    btnLockerSearch.setIcon(components.searchImage("locked.png"));
+                } else if (btnLockerSearch.getIcon().toString().endsWith("locked.png") && JOptionPane.showConfirmDialog(null,
+                        "Exit", "RecyclingPoint", JOptionPane.YES_OPTION) == 0) {
+                    txfCPF.setEnabled(true);
+                    txfCPF.setText("");
+                    btnLockerSearch.setIcon(components.searchImage("openlock.png"));
+                }
+
+            } catch (RegisteredUserException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "RecyclingPoint", JOptionPane.ERROR_MESSAGE);
+
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Inform your CPF", "RecyclingPoint", JOptionPane.WARNING_MESSAGE);
+        }
+    }
 }
