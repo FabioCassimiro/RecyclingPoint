@@ -139,6 +139,8 @@ public class Register extends JFrame implements ClassInterface {
             String[] informations = {txfCPF.getText(), txfName.getText(), txfLastName.getText(),
                 "", txfUsername.getText(), pwdPassword.getText(), "06/06"};
             controller.createUser(informations);
+            dispose();
+            new Login();
         } catch (InvalidRegistration ex) {
             Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
         }

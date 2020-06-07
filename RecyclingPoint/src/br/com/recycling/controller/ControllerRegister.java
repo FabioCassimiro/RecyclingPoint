@@ -48,7 +48,7 @@ public class ControllerRegister {
     }
 
     public void validEmailAddress(String email) throws InvalidEmailAddress, FieldValueNotInformed {
-        if (!email.equals("") && email.contains("@")) {
+        if (!email.equals("") && !email.contains("@")) {
             throw new InvalidEmailAddress("Invalid email address");
         } else if (email.equals("")) {
             throw new FieldValueNotInformed("Email not informed");

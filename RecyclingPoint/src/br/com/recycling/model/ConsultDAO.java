@@ -1,5 +1,6 @@
 package br.com.recycling.model;
 
+import br.com.recycling.exception.UserNotFound;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -26,4 +27,21 @@ public class ConsultDAO {
         }
         return false;
     }
+
+    public boolean consultCredentials(String user, String password){
+        String[] fields = {"USERNAME"};
+        String[] values = {user};
+        ResultSet row;
+        try {
+            Statement statement = SqliteConnection.conection().createStatement();
+            row = statement.executeQuery(SqliteConnection.commandSelect("TB_USER", fields, values));
+            if(user.equals(row.getString("USERNAME")) && password.equals(row.getString("PASSWORD"))){
+                return true;
+            }
+        } catch (SQLException ex) {
+            //Adicionar tratamento de exception
+        }
+        return false;
+    }
+
 }

@@ -1,5 +1,7 @@
 package br.com.recycling.viewer;
 
+import br.com.recycling.controller.ControllerLogin;
+import br.com.recycling.exception.UserNotFound;
 import br.com.recycling.utils.ClassInterface;
 import br.com.recycling.utils.DefaultComponents;
 import br.com.recycling.utils.DefaultPanel;
@@ -7,8 +9,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -20,6 +25,7 @@ public class Login extends JFrame implements ClassInterface {
 
     DefaultPanel pnlLogin = new DefaultPanel();
     DefaultComponents components = new DefaultComponents();
+    ControllerLogin controller = new ControllerLogin();
     JTextField txfUsername;
     JPasswordField pwdPassword;
 
@@ -55,7 +61,8 @@ public class Login extends JFrame implements ClassInterface {
         btnRegister.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Colocar a ação ir para a tela Register
+                dispose();
+                new Register();
             }
         });
 
@@ -63,7 +70,14 @@ public class Login extends JFrame implements ClassInterface {
         btnLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Colocar a ação de entrar no sistema
+                try {
+                    controller.searchCredentials(txfUsername.getText(), pwdPassword.getText());
+                    dispose();
+                    new Recycling();
+                    JOptionPane.showMessageDialog(null, "Logado com sucesso", "RecyclingPoint", JOptionPane.INFORMATION_MESSAGE);
+                } catch (UserNotFound ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "RecyclingPoint", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 

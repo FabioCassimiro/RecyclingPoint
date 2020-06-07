@@ -2,6 +2,8 @@ package br.com.recycling.model;
 
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +19,13 @@ public class InsertDAO {
             JOptionPane.showMessageDialog(null, "User created", "RecyclingPoint", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Unable to register user", "RecyclingPoint", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }finally{
+            try {
+                SqliteConnection.conection().close();
+            } catch (SQLException ex) {
+                Logger.getLogger(InsertDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }
