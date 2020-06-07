@@ -1,6 +1,7 @@
 package br.com.recycling.viewer;
 
 import br.com.recycling.controller.ControllerRegister;
+import br.com.recycling.exception.FieldValueNotInformed;
 import br.com.recycling.exception.InvalidEmailAddress;
 import br.com.recycling.exception.InvalidRegistration;
 import br.com.recycling.exception.PasswordsDontMatch;
@@ -115,18 +116,18 @@ public class Register extends JFrame implements ClassInterface {
         pnlRegister.add(btnRegister);
         pnlRegister.add(btnLockerSearch);
     }
+    
+    
 
     public void veriftUser() throws InvalidRegistration {
         try {
-            controller.UserRegistered(txfUsername.getText());
+            controller.validNameLastname(txfName.getText(), txfLastName.getText());
             controller.validEmailAddress(txfEmailAddress.getText());
+            controller.UserRegistered(txfUsername.getText());
             controller.validPassword(pwdPassword.getText(), pwdConfirmPassword.getText());
-        } catch (RegisteredUserException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        } catch (InvalidEmailAddress ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        } catch (PasswordsDontMatch ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
+        } catch (RegisteredUserException | InvalidEmailAddress | PasswordsDontMatch | FieldValueNotInformed ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(),"RecyclingPoint",JOptionPane.WARNING_MESSAGE);
+            throw new InvalidRegistration("Error when registering");
         }
 
     }
@@ -137,7 +138,7 @@ public class Register extends JFrame implements ClassInterface {
             veriftUser();
             String[] informations = {txfCPF.getText(), txfName.getText(), txfLastName.getText(),
                 "", txfUsername.getText(), pwdPassword.getText(), "06/06"};
-            //controller.createUser(informations);
+            controller.createUser(informations);
         } catch (InvalidRegistration ex) {
             Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
         }
