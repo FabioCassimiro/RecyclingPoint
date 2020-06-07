@@ -39,6 +39,7 @@ public class Register extends JFrame implements ClassInterface {
     JPasswordField pwdPassword;
     JPasswordField pwdConfirmPassword;
     JButton btnLockerSearch;
+    JButton btnRegister;
 
     public Register() {
 
@@ -57,6 +58,7 @@ public class Register extends JFrame implements ClassInterface {
         labels();
         buttons();
         components.image(pnlRegister);
+        enableFields(false);
     }
 
     @Override
@@ -97,7 +99,7 @@ public class Register extends JFrame implements ClassInterface {
 
     @Override
     public void buttons() {
-        JButton btnRegister = DefaultComponents.defaultButton("Register", DefaultComponents.secundaryColor, 175, 700, 150, 35);
+        btnRegister = DefaultComponents.defaultButton("Register", DefaultComponents.secundaryColor, 175, 700, 150, 35);
         btnRegister.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -116,8 +118,17 @@ public class Register extends JFrame implements ClassInterface {
         pnlRegister.add(btnRegister);
         pnlRegister.add(btnLockerSearch);
     }
-    
-    
+
+    public void enableFields(boolean status) {
+        txfName.setEditable(status);
+        txfLastName.setEditable(status);
+        txfEmailAddress.setEditable(status);
+        txfUsername.setEditable(status);
+        pwdPassword.setEditable(status);
+        pwdConfirmPassword.setEditable(status);
+        btnRegister.setEnabled(status);
+
+    }
 
     public void veriftUser() throws InvalidRegistration {
         try {
@@ -126,7 +137,7 @@ public class Register extends JFrame implements ClassInterface {
             controller.UserRegistered(txfUsername.getText());
             controller.validPassword(pwdPassword.getText(), pwdConfirmPassword.getText());
         } catch (RegisteredUserException | InvalidEmailAddress | PasswordsDontMatch | FieldValueNotInformed ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(),"RecyclingPoint",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "RecyclingPoint", JOptionPane.WARNING_MESSAGE);
             throw new InvalidRegistration("Error when registering");
         }
 
@@ -156,10 +167,12 @@ public class Register extends JFrame implements ClassInterface {
                 if (btnLockerSearch.getIcon().toString().endsWith("openlock.png")) {
                     controller.CPFRegistered(txfCPF.getText());
                     txfCPF.setEnabled(false);
+                    enableFields(true);
                     btnLockerSearch.setIcon(components.searchImage("locked.png"));
                 } else if (btnLockerSearch.getIcon().toString().endsWith("locked.png") && JOptionPane.showConfirmDialog(null,
                         "Exit", "RecyclingPoint", JOptionPane.YES_OPTION) == 0) {
                     txfCPF.setEnabled(true);
+                    enableFields(false);
                     txfCPF.setText("");
                     btnLockerSearch.setIcon(components.searchImage("openlock.png"));
                 }
