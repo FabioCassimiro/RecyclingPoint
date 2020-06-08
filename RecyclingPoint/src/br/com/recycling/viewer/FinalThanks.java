@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -52,7 +53,8 @@ public class FinalThanks extends JFrame implements ClassInterface{
         btnContinue.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Colocar a ação ir para a tela de resultados
+                dispose();
+                new Recycling();
             }
         });
         
@@ -60,7 +62,9 @@ public class FinalThanks extends JFrame implements ClassInterface{
         btnExit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Colocar a ação ir para a tela de resultados
+                if(JOptionPane.showConfirmDialog(null, "Do you really want to leave?", "RecyclingPoint", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE) == 0){
+                    System.exit(0);
+                }
             }
         });
         
