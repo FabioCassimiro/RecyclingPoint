@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.recycling.viewer;
 
 import br.com.recycling.controller.ControllerRecycling;
@@ -12,8 +7,6 @@ import br.com.recycling.utils.DefaultPanel;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,16 +14,17 @@ import javax.swing.JProgressBar;
 
 /**
  *
- * @author WINDOWS
+ * @author Fabio Cassimiro
  */
 public class Loading extends JFrame implements ClassInterface {
-
-    DefaultComponents components = new DefaultComponents();
-    DefaultPanel pnlLoading = new DefaultPanel();
-    JLabel loadingMessage;
-    JLabel trashCan;
-    JProgressBar pgbLoading;
-
+    
+    private DefaultComponents components = new DefaultComponents();
+    private DefaultPanel pnlLoading = new DefaultPanel();
+    private JLabel loadingMessage;
+    private JLabel trashCan;
+    private JProgressBar pgbLoading;
+    private JButton btnNext;
+    
     public Loading() {
         panelInit();
         loadingBar();
@@ -39,7 +33,7 @@ public class Loading extends JFrame implements ClassInterface {
         setUndecorated(true);
         setVisible(true);
     }
-
+    
     @Override
     public void panelInit() {
         add(pnlLoading);
@@ -47,35 +41,33 @@ public class Loading extends JFrame implements ClassInterface {
         fields();
         buttons();
         components.image(pnlLoading);
-
+        
     }
-
+    
     @Override
     public void labels() {
         loadingMessage = DefaultComponents.defaultLabels("", DefaultComponents.fontTextLabel, 50, 420, 300, 30);
         trashCan = DefaultComponents.defaultLabels("", null, 195, 200, 110, 160);
-
+        
         pnlLoading.add(loadingMessage);
         pnlLoading.add(trashCan);
-
     }
-
+    
     @Override
     public void fields() {
         pgbLoading = new JProgressBar(0, 100);
-        pgbLoading.setValue(50);//provisorio
         pgbLoading.setBorder(null);
         pgbLoading.setBackground(DefaultComponents.secundaryColor);
         pgbLoading.setForeground(Color.WHITE);
-
         pgbLoading.setBounds(50, 450, 400, 50);
-
+        
         pnlLoading.add(pgbLoading);
     }
-
+    
     @Override
     public void buttons() {
-        JButton btnNext = DefaultComponents.defaultButton("Next", DefaultComponents.secundaryColor, 175, 700, 150, 35);
+        btnNext = DefaultComponents.defaultButton("Next", DefaultComponents.secundaryColor, 175, 700, 150, 35);
+        btnNext.setVisible(false);
         btnNext.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -83,23 +75,24 @@ public class Loading extends JFrame implements ClassInterface {
                 new Score();
             }
         });
-
+        
         pnlLoading.add(btnNext);
     }
-
+    
     public void loadingWords(int index) {
-        String[] phrases = {"Loading", "Choosing", "Processing", "Recycling", "Finished"};
-        loadingMessage.setText(phrases[index]);
+        String[] words = {"Loading", "Choosing", "Processing", "Recycling", "Finished"};
+        loadingMessage.setText(words[index]);
     }
-
+    
     public void setTrashCan() {
         trashCan.setIcon(components.searchImage(ControllerRecycling.finalValues.get(1) + ".png"));
     }
-
+    
     public void loading(int index) {
         try {
             pgbLoading.setValue(index);
             Thread.sleep(50);
+            
             switch (index) {
                 case 0:
                     loadingWords(0);
@@ -116,13 +109,13 @@ public class Loading extends JFrame implements ClassInterface {
                     break;
                 case 100:
                     loadingWords(4);
+                    btnNext.setVisible(true);
                     break;
             }
         } catch (InterruptedException ex) {
-            Logger.getLogger(Loading.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     public void loadingBar() {
         Thread loading = new Thread(new Runnable() {
             @Override
@@ -134,5 +127,5 @@ public class Loading extends JFrame implements ClassInterface {
         });
         loading.start();
     }
-
+    
 }
