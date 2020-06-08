@@ -13,11 +13,12 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author WINDOWS
+ * @author Fabio Cassimiro
  */
-public class FinalThanks extends JFrame implements ClassInterface{
-    DefaultPanel pnlFinalThanks = new DefaultPanel();
-    DefaultComponents components = new DefaultComponents();
+public class FinalThanks extends JFrame implements ClassInterface {
+
+    private DefaultPanel pnlFinalThanks = new DefaultPanel();
+    private DefaultComponents components = new DefaultComponents();
 
     public FinalThanks() {
         panelInit();
@@ -57,21 +58,19 @@ public class FinalThanks extends JFrame implements ClassInterface{
                 new Recycling();
             }
         });
-        
+
         JButton btnExit = DefaultComponents.defaultButton("Exit", Color.RED, 300, 720, 150, 35);
         btnExit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(JOptionPane.showConfirmDialog(null, "Do you really want to leave?", "RecyclingPoint", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE) == 0){
+                if (JOptionPane.showConfirmDialog(null, "Do you really want to leave?", "RecyclingPoint", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
                     System.exit(0);
                 }
             }
         });
-        
+
         pnlFinalThanks.add(btnExit);
-        
         pnlFinalThanks.add(btnContinue);
     }
-    
-    
+
 }
