@@ -1,5 +1,6 @@
 package br.com.recycling.viewer;
 
+import br.com.recycling.controller.ControllerRecycling;
 import br.com.recycling.utils.ClassInterface;
 import br.com.recycling.utils.DefaultComponents;
 import br.com.recycling.utils.DefaultPanel;
@@ -45,14 +46,12 @@ public class Score extends JFrame implements ClassInterface{
     public void labels() {
         pnlScore.add(DefaultComponents.defaultLabels("Congratulations on your beautiful attitude.", new Font("Arial", Font.BOLD, 20), 45, 650, 405, 30));
         pnlScore.add(DefaultComponents.defaultLabels("Generated Score:", new Font("Arial", Font.BOLD, 30), 120, 100, 255, 35));
-        lblScore = DefaultComponents.defaultLabels("", new Font("Arial", Font.BOLD, 30), 215, 140, 100, 35);
-        lblScore.setText("500");//provisorio
+        lblScore = DefaultComponents.defaultLabels(ControllerRecycling.finalValues.get(2), new Font("Arial", Font.BOLD, 30), 215, 140, 100, 35);
         pnlScore.add(DefaultComponents.defaultLabels("Item:", new Font("Arial", Font.BOLD, 30), 210, 250, 80, 35));
-        lblItem = DefaultComponents.defaultLabels("", new Font("Arial", Font.BOLD, 30), 100, 290, 300, 35);
-        lblItem.setText("Lata de Refrigerante");//provisorio
+        lblItem = DefaultComponents.defaultLabels(ControllerRecycling.finalValues.get(0), new Font("Arial", Font.BOLD, 30), 100, 290, 300, 35);
         pnlScore.add(DefaultComponents.defaultLabels("Trash Can:", new Font("Arial", Font.BOLD, 30), 165, 370, 170, 35));
         trashCan = DefaultComponents.defaultLabels("", null, 195, 410, 110, 160);
-        trashCan.setIcon(components.searchImage("lataVidro.png")); //provisorio
+        trashCan.setIcon(components.searchImage(ControllerRecycling.finalValues.get(1)+ ".png")); //provisorio
         
         pnlScore.add(trashCan);
         pnlScore.add(lblItem);

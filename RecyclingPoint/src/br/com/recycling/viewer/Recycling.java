@@ -1,5 +1,6 @@
 package br.com.recycling.viewer;
 
+import br.com.recycling.controller.ControllerRecycling;
 import br.com.recycling.utils.ClassInterface;
 import br.com.recycling.utils.DefaultComponents;
 import br.com.recycling.utils.DefaultPanel;
@@ -23,6 +24,7 @@ public class Recycling extends JFrame implements ClassInterface {
 
     DefaultComponents components = new DefaultComponents();
     DefaultPanel pnlRecycling = new DefaultPanel();
+    ControllerRecycling controller = new ControllerRecycling();
     JLabel imgItem;
     JPanel panel;
     JComboBox cmbItems;
@@ -78,6 +80,14 @@ public class Recycling extends JFrame implements ClassInterface {
         JButton btnRecycling = DefaultComponents.defaultButton("", Color.WHITE, 210, 675, 80, 80);
         btnRecycling.setContentAreaFilled(false);
         btnRecycling.setIcon(components.searchImage("Recycling.png"));
+        btnRecycling.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                recycling();
+                dispose();
+                new Score();
+            }
+        });
 
         pnlRecycling.add(btnRecycling);
     }
@@ -102,6 +112,11 @@ public class Recycling extends JFrame implements ClassInterface {
     }
     
     public void recycling(){
+        if(!String.valueOf(cmbItems.getSelectedItem()).equals("Select Item")){
+            controller.Recycling(String.valueOf(cmbItems.getSelectedItem()),String.valueOf(spnAmount.getValue()));
+        }else{
+            System.out.println("Nao pode");
+        }
         
     }
 
