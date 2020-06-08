@@ -21,7 +21,6 @@ public class ControllerRecycling {
         this.amount = Integer.parseInt(amount);
         finalValues.set(2, calcScore());
         finalValues.set(3, calcTime());
-        
     }
     
     public String calcScore(){

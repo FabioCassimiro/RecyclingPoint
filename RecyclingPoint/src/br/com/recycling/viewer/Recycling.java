@@ -85,7 +85,7 @@ public class Recycling extends JFrame implements ClassInterface {
             public void actionPerformed(ActionEvent e) {
                 recycling();
                 dispose();
-                new Score();
+                new Loading();
             }
         });
 

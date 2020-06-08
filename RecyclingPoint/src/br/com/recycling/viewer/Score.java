@@ -69,7 +69,9 @@ public class Score extends JFrame implements ClassInterface{
         btnNext.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Colocar a ação ir para a tela de resultados
+                dispose();
+                new FinalThanks();
+               
             }
         });
         
