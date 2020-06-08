@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
@@ -115,7 +116,7 @@ public class Recycling extends JFrame implements ClassInterface {
         if(!String.valueOf(cmbItems.getSelectedItem()).equals("Select Item")){
             controller.Recycling(String.valueOf(cmbItems.getSelectedItem()),String.valueOf(spnAmount.getValue()));
         }else{
-            System.out.println("Nao pode");
+            JOptionPane.showMessageDialog(null, "Select an Item","RecyclingPoint",JOptionPane.WARNING_MESSAGE);
         }
         
     }

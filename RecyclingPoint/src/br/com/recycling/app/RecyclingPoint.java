@@ -14,6 +14,6 @@ import br.com.recycling.viewer.Score;
  */
 public class RecyclingPoint {
     public static void main(String[] args) {
-        new Loading();
+        new Score();
     }
 }

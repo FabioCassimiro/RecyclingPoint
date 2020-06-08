@@ -15,16 +15,15 @@ import javax.swing.JLabel;
  *
  * @author Fabio Cassimiro
  */
-public class Score extends JFrame implements ClassInterface{
-    
+public class Score extends JFrame implements ClassInterface {
+
     DefaultPanel pnlScore = new DefaultPanel();
     DefaultComponents components = new DefaultComponents();
     JLabel trashCan;
     JLabel lblItem;
     JLabel lblScore;
-    
-    
-    public Score(){
+
+    public Score() {
         panelInit();
         setSize(500, 800);
         setLocationRelativeTo(null);
@@ -39,7 +38,7 @@ public class Score extends JFrame implements ClassInterface{
         buttons();
         fields();
         components.image(pnlScore);
-        
+
     }
 
     @Override
@@ -49,10 +48,11 @@ public class Score extends JFrame implements ClassInterface{
         lblScore = DefaultComponents.defaultLabels(ControllerRecycling.finalValues.get(2), new Font("Arial", Font.BOLD, 30), 215, 140, 100, 35);
         pnlScore.add(DefaultComponents.defaultLabels("Item:", new Font("Arial", Font.BOLD, 30), 210, 250, 80, 35));
         lblItem = DefaultComponents.defaultLabels(ControllerRecycling.finalValues.get(0), new Font("Arial", Font.BOLD, 30), 100, 290, 300, 35);
+        lblItem.setForeground(DefaultComponents.secundaryColor);
         pnlScore.add(DefaultComponents.defaultLabels("Trash Can:", new Font("Arial", Font.BOLD, 30), 165, 370, 170, 35));
         trashCan = DefaultComponents.defaultLabels("", null, 195, 410, 110, 160);
-        trashCan.setIcon(components.searchImage(ControllerRecycling.finalValues.get(1)+ ".png")); //provisorio
-        
+        trashCan.setIcon(components.searchImage(ControllerRecycling.finalValues.get(1) + ".png"));
+
         pnlScore.add(trashCan);
         pnlScore.add(lblItem);
         pnlScore.add(lblScore);
@@ -60,7 +60,6 @@ public class Score extends JFrame implements ClassInterface{
 
     @Override
     public void fields() {
-        
     }
 
     @Override
@@ -71,10 +70,10 @@ public class Score extends JFrame implements ClassInterface{
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 new FinalThanks();
-               
+
             }
         });
-        
+
         pnlScore.add(btnNext);
     }
 }
