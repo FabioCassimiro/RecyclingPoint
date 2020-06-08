@@ -1,6 +1,5 @@
 package br.com.recycling.model;
 
-import br.com.recycling.exception.UserNotFound;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,6 +23,12 @@ public class ConsultDAO {
 
         } catch (SQLException ex) {
             //Adicionar tratamento de exception
+        }finally{
+            try {
+                SqliteConnection.conection().close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ConsultDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return false;
     }
@@ -40,8 +45,16 @@ public class ConsultDAO {
             }
         } catch (SQLException ex) {
             //Adicionar tratamento de exception
+        }finally{
+            try {
+                SqliteConnection.conection().close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ConsultDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return false;
     }
+    
+    
 
 }

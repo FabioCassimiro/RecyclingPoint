@@ -8,10 +8,10 @@ public interface ClassInterface {
 
     public abstract void panelInit();
 
-    public abstract void labels();
+    public void labels();
 
-    public abstract void fields();
+    public void fields();
 
-    public abstract void buttons();
+    public void buttons();
 
 }
