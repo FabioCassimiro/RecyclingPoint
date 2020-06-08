@@ -4,6 +4,7 @@ import br.com.recycling.controller.ControllerRegister;
 import br.com.recycling.exception.FieldValueNotInformed;
 import br.com.recycling.exception.InvalidEmailAddress;
 import br.com.recycling.exception.InvalidRegistration;
+import br.com.recycling.exception.MinimumAmountOfFieldNotReported;
 import br.com.recycling.exception.PasswordsDontMatch;
 import br.com.recycling.exception.RegisteredUserException;
 import br.com.recycling.utils.ClassInterface;
@@ -27,28 +28,26 @@ import javax.swing.JTextField;
  */
 public class Register extends JFrame implements ClassInterface {
 
-    public boolean enableFields = true;
-    DefaultPanel pnlRegister = new DefaultPanel();
-    ControllerRegister controller = new ControllerRegister();
-    DefaultComponents components = new DefaultComponents();
-    JTextField txfCPF;
-    JTextField txfName;
-    JTextField txfLastName;
-    JTextField txfEmailAddress;
-    JTextField txfUsername;
-    JPasswordField pwdPassword;
-    JPasswordField pwdConfirmPassword;
-    JButton btnLockerSearch;
-    JButton btnRegister;
+    private boolean enableFields = true;
+    private DefaultPanel pnlRegister = new DefaultPanel();
+    private ControllerRegister controller = new ControllerRegister();
+    private DefaultComponents components = new DefaultComponents();
+    private JTextField txfCPF;
+    private JTextField txfName;
+    private JTextField txfLastName;
+    private JTextField txfEmailAddress;
+    private JTextField txfUsername;
+    private JPasswordField pwdPassword;
+    private JPasswordField pwdConfirmPassword;
+    private JButton btnLockerSearch;
+    private JButton btnRegister;
 
     public Register() {
-
         panelInit();
         setSize(500, 800);
         setLocationRelativeTo(null);
         setUndecorated(true);
         setVisible(true);
-
     }
 
     @Override
@@ -133,14 +132,15 @@ public class Register extends JFrame implements ClassInterface {
     public void veriftUser() throws InvalidRegistration {
         try {
             controller.validNameLastname(txfName.getText(), txfLastName.getText());
+            controller.validUsername(txfUsername.getText());
+            controller.validPassword(pwdPassword.getText(), pwdConfirmPassword.getText());
             controller.validEmailAddress(txfEmailAddress.getText());
             controller.UserRegistered(txfUsername.getText());
-            controller.validPassword(pwdPassword.getText(), pwdConfirmPassword.getText());
-        } catch (RegisteredUserException | InvalidEmailAddress | PasswordsDontMatch | FieldValueNotInformed ex) {
+            controller.validPasswordEquality(pwdPassword.getText(), pwdConfirmPassword.getText());
+        } catch (RegisteredUserException | InvalidEmailAddress | PasswordsDontMatch | FieldValueNotInformed | MinimumAmountOfFieldNotReported ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "RecyclingPoint", JOptionPane.WARNING_MESSAGE);
             throw new InvalidRegistration("Error when registering");
         }
-
     }
 
     public void createUser() {

@@ -2,6 +2,7 @@ package br.com.recycling.controller;
 
 import br.com.recycling.exception.FieldValueNotInformed;
 import br.com.recycling.exception.InvalidEmailAddress;
+import br.com.recycling.exception.MinimumAmountOfFieldNotReported;
 import br.com.recycling.exception.PasswordsDontMatch;
 import br.com.recycling.exception.RegisteredUserException;
 import br.com.recycling.model.ConsultDAO;
@@ -10,7 +11,7 @@ import br.com.recycling.model.SqliteConnection;
 
 /**
  *
- * @author WINDOWS
+ * @author Fabio Cassimiro
  */
 public class ControllerRegister {
 
@@ -22,28 +23,44 @@ public class ControllerRegister {
         insertDAO.createUser(SqliteConnection.commandInsert("TB_USER", fields, informations));
     }
 
+    public void validUsername(String username) throws MinimumAmountOfFieldNotReported, FieldValueNotInformed {
+        
+        if (username.equals("")) {
+            throw new FieldValueNotInformed("Username not informed");
+        }else if (username.length() > 0 && username.length() < 8) {
+            throw new MinimumAmountOfFieldNotReported("Username field must be at least 8 characters long");
+        }
+    }
+
+    public void validPassword(String password, String confirmPassword) throws MinimumAmountOfFieldNotReported, FieldValueNotInformed {   
+        if (password.equals("") || confirmPassword.equals("")) {
+            throw new FieldValueNotInformed("Password not informed");
+        }else if (password.length() > 0 && password.length() < 8) {
+            throw new MinimumAmountOfFieldNotReported("Password field must be at least 8 characters long");
+        }
+    }
+    
+    public void validNameLastname(String name, String lastname) throws FieldValueNotInformed {
+        if (name.equals("") || lastname.equals("")) {
+            throw new FieldValueNotInformed("Field name or lastname not informed");
+        }
+    }
+
     public void CPFRegistered(String cpf) throws RegisteredUserException {
         if (consultDAO.consultUser("CPF", cpf)) {
             throw new RegisteredUserException("User Registered");
         }
     }
 
-    public void UserRegistered(String username) throws RegisteredUserException, FieldValueNotInformed {
-        if (!username.equals("")) {
-            if (consultDAO.consultUser("USERNAME", username)) {
-                throw new RegisteredUserException("User Registered");
-            }
-        } else {
-            throw new FieldValueNotInformed("Username not informed");
+    public void UserRegistered(String username) throws RegisteredUserException {
+        if (consultDAO.consultUser("USERNAME", username)) {
+            throw new RegisteredUserException("User Registered");
         }
-
     }
 
-    public void validPassword(String password, String confirmPassword) throws PasswordsDontMatch, FieldValueNotInformed {
-        if (!password.equals(confirmPassword) && (!password.equals("") && !confirmPassword.equals(""))) {
+    public void validPasswordEquality(String password, String confirmPassword) throws PasswordsDontMatch {
+        if (!password.equals(confirmPassword)) {
             throw new PasswordsDontMatch("passwords don't match");
-        } else if (password.equals("") || confirmPassword.equals("")) {
-            throw new FieldValueNotInformed("Password not informed");
         }
     }
 
@@ -55,9 +72,5 @@ public class ControllerRegister {
         }
     }
 
-    public void validNameLastname(String name, String lastname) throws FieldValueNotInformed {
-        if (name.equals("") || lastname.equals("")) {
-            throw new FieldValueNotInformed("Field name or lastname not informed");
-        }
-    }
+    
 }
