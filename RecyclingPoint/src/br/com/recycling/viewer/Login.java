@@ -1,6 +1,7 @@
 package br.com.recycling.viewer;
 
 import br.com.recycling.controller.ControllerLogin;
+import br.com.recycling.exception.FieldValueNotInformed;
 import br.com.recycling.exception.UserNotFound;
 import br.com.recycling.utils.ClassInterface;
 import br.com.recycling.utils.DefaultComponents;
@@ -9,8 +10,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -71,11 +70,12 @@ public class Login extends JFrame implements ClassInterface {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    controller.validCredentials(txfUsername.getText(), pwdPassword.getText());
                     controller.searchCredentials(txfUsername.getText(), pwdPassword.getText());
                     dispose();
                     new Recycling();
-                    JOptionPane.showMessageDialog(null, "Logado com sucesso", "RecyclingPoint", JOptionPane.INFORMATION_MESSAGE);
-                } catch (UserNotFound ex) {
+                    JOptionPane.showMessageDialog(null, "Successfully logged in", "RecyclingPoint", JOptionPane.INFORMATION_MESSAGE);
+                } catch (UserNotFound | FieldValueNotInformed ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "RecyclingPoint", JOptionPane.ERROR_MESSAGE);
                 }
             }
