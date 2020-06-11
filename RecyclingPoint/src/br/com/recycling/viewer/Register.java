@@ -8,6 +8,7 @@ import br.com.recycling.exception.MinimumAmountOfFieldNotReported;
 import br.com.recycling.exception.PasswordsDontMatch;
 import br.com.recycling.exception.RegisteredUserException;
 import br.com.recycling.utils.ClassInterface;
+import br.com.recycling.utils.Cryptography;
 import br.com.recycling.utils.DefaultComponents;
 import br.com.recycling.utils.DefaultPanel;
 import java.awt.Color;
@@ -145,7 +146,7 @@ public class Register extends JFrame implements ClassInterface {
 
     public void createUser() {
         String[] informationsPeople = {txfCPF.getText(), txfName.getText(), txfLastName.getText()};
-        String[] informationsUser = {txfEmailAddress.getText(), txfUsername.getText(), pwdPassword.getText()};
+        String[] informationsUser = {txfEmailAddress.getText(), txfUsername.getText(), Cryptography.criptografia(pwdPassword.getText())};
         String[] informationsScore = {txfUsername.getText()};
 
         try {
@@ -155,6 +156,7 @@ public class Register extends JFrame implements ClassInterface {
             controller.createScore(informationsScore);
             dispose();
             new Login();
+            JOptionPane.showMessageDialog(null, "User created", "RecyclingPoint", JOptionPane.INFORMATION_MESSAGE);
         } catch (InvalidRegistration ex) {
             Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
         }
