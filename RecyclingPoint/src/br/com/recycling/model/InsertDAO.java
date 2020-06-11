@@ -14,7 +14,7 @@ public class InsertDAO {
 
     public void createUser(String query) {
         try {
-            Statement statement = SqliteConnection.conection().createStatement();
+            Statement statement = SqliteConnection.connection().createStatement();
             statement.executeUpdate(query);
             statement.setQueryTimeout(30);
             JOptionPane.showMessageDialog(null, "User created", "RecyclingPoint", JOptionPane.INFORMATION_MESSAGE);
@@ -23,7 +23,7 @@ public class InsertDAO {
             ex.printStackTrace();
         }finally{
             try {
-                SqliteConnection.conection().close();
+                SqliteConnection.connection().close();
             } catch (SQLException ex) {
                 Logger.getLogger(InsertDAO.class.getName()).log(Level.SEVERE, null, ex);
             }

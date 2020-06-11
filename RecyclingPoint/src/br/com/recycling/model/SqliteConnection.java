@@ -7,13 +7,13 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author WINDOWS
+ * @author Fabio Cassimiro
  */
 public class SqliteConnection {
 
     public static Connection connection;
-
-    public static Connection conection() {;
+    
+    public static Connection connection() {
         try {
             return connection = DriverManager.getConnection("jdbc:sqlite:database/RecyclingDB.db");
         } catch (SQLException sql) {
@@ -21,8 +21,9 @@ public class SqliteConnection {
         }
         return null;
     }
-
-    public static void cancelConnection() {
+    
+    
+    public static void closeConnection() {
         try {
             if (connection.isClosed() == false) {
                 connection.close();
@@ -31,6 +32,8 @@ public class SqliteConnection {
             System.err.println(ex.getMessage());
         }
     }
+    
+    
 
     public static String commandSelect(String table, String[] fields, String[] values) {
         String selectQuery = "";

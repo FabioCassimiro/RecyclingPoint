@@ -1,4 +1,3 @@
-
 package br.com.recycling.model;
 
 import java.sql.SQLException;
@@ -6,26 +5,26 @@ import java.sql.Statement;
 
 /**
  *
- * @author WINDOWS
+ * @author Fabio Cassimiro
  */
 public class ChangeDAO {
-    public void updateScore(String field, String value){
+
+    public void updateScore(String field, String value) {
         String[] fields = {field};
         String[] values = {value};
         Statement statement = null;
         try {
-            statement = SqliteConnection.conection().createStatement();
-            statement.setQueryTimeout(0);
+            statement = SqliteConnection.connection().createStatement();
+            statement.setQueryTimeout(15);
             statement.executeUpdate(SqliteConnection.commandUpdate("TB_SCORE", fields, values, "USERNAME", ConsultDAO.username));
-            
         } catch (SQLException ex) {
-            //Adicionar tratamento de exception
-            ex.printStackTrace();
+            System.err.println(ex.getMessage());
         } finally {
             try {
+                SqliteConnection.closeConnection();
                 statement.close();
-                SqliteConnection.cancelConnection();
-            } catch (SQLException e) {
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
             }
 
         }
