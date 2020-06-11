@@ -77,7 +77,7 @@ public class ConsultDAO {
                 values.add(result.getString("NAME"));
                 values.add(result.getString("TYPE"));
                 values.add(result.getString("SCORE"));
-                values.add(result.getString("YEARS"));
+                values.add(result.getString("DECOMPOSITION"));
             }
             return values;
         } catch (SQLException ex) {

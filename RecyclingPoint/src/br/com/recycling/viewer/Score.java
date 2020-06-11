@@ -47,11 +47,12 @@ public class Score extends JFrame implements ClassInterface {
         pnlScore.add(DefaultComponents.defaultLabels("Generated Score:", new Font("Arial", Font.BOLD, 30), 120, 100, 255, 35));
         lblScore = DefaultComponents.defaultLabels(ControllerRecycling.finalValues.get(2), new Font("Arial", Font.BOLD, 30), 215, 140, 100, 35);
         pnlScore.add(DefaultComponents.defaultLabels("Item:", new Font("Arial", Font.BOLD, 30), 210, 250, 80, 35));
-        lblItem = DefaultComponents.defaultLabels(ControllerRecycling.finalValues.get(0), new Font("Arial", Font.BOLD, 30), 100, 290, 300, 35);
+        lblItem = DefaultComponents.defaultLabels(ControllerRecycling.finalValues.get(0), new Font("Arial", Font.BOLD, 25), 160, 290, 180, 27);
         lblItem.setForeground(DefaultComponents.secundaryColor);
         pnlScore.add(DefaultComponents.defaultLabels("Trash Can:", new Font("Arial", Font.BOLD, 30), 165, 370, 170, 35));
         trashCan = DefaultComponents.defaultLabels("", null, 195, 410, 110, 160);
         trashCan.setIcon(components.searchImage(ControllerRecycling.finalValues.get(1) + ".png"));
+        
 
         pnlScore.add(trashCan);
         pnlScore.add(lblItem);
