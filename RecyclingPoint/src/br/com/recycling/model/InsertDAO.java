@@ -17,7 +17,6 @@ public class InsertDAO {
             Statement statement = SqliteConnection.connection().createStatement();
             statement.executeUpdate(query);
             statement.setQueryTimeout(30);
-            JOptionPane.showMessageDialog(null, "User created", "RecyclingPoint", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Unable to register user", "RecyclingPoint", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();

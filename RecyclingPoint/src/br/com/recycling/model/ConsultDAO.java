@@ -1,5 +1,6 @@
 package br.com.recycling.model;
 
+import br.com.recycling.utils.Cryptography;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,16 +15,16 @@ public class ConsultDAO {
     public static ArrayList<String> values = new ArrayList<>();
     public static String username;
 
-    public boolean consultUser(String field, String value) {
+    public boolean consultUser(String table, String field, String value) {
         String[] fields = {field};
         String[] values = {value};
         ResultSet resultSet = null;
         Statement statement = null;
-        
+
         try {
             statement = SqliteConnection.connection().createStatement();
             statement.setQueryTimeout(30);
-            resultSet = statement.executeQuery(SqliteConnection.commandSelect("TB_USER", fields, values));
+            resultSet = statement.executeQuery(SqliteConnection.commandSelect(table, fields, values));
             return resultSet.next();
 
         } catch (SQLException ex) {
@@ -49,7 +50,7 @@ public class ConsultDAO {
             statement = SqliteConnection.connection().createStatement();
             statement.setQueryTimeout(30);
             resultSet = statement.executeQuery(SqliteConnection.commandSelect("TB_USER", fields, values));
-            if (user.equals(resultSet.getString("USERNAME")) && password.equals(resultSet.getString("PASSWORD"))) {
+            if (user.equals(resultSet.getString("USERNAME")) && Cryptography.criptografia(password).equals(resultSet.getString("PASSWORD"))) {
                 username = resultSet.getString("USERNAME");
                 return true;
             }
@@ -109,7 +110,6 @@ public class ConsultDAO {
         try {
             statement = SqliteConnection.connection().createStatement();
             resultSet = statement.executeQuery(SqliteConnection.commandSelect("TB_SCORE", field, value));
-            System.out.println(resultSet.getString("SCORE"));
             return resultSet.getString("SCORE");
 
         } catch (SQLException ex) {
