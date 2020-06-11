@@ -19,8 +19,18 @@ public class ControllerRegister {
     ConsultDAO consultDAO = new ConsultDAO();
 
     public void createUser(String[] informations) {
-        String[] fields = {"CPF", "NAME", "LASTNAME", "SCORE", "USERNAME", "PASSWORD", "REGISTRATIONDATE"};
+        String[] fields = {"EMAIL","USERNAME", "PASSWORD"};
         insertDAO.createUser(SqliteConnection.commandInsert("TB_USER", fields, informations));
+    }
+    
+    public void createPeople(String[] informations) {
+        String[] fields = {"CPF", "NAME", "LASTNAME"};
+        insertDAO.createUser(SqliteConnection.commandInsert("TB_PEOPLE", fields, informations));
+    }
+    
+    public void createScore(String[] informations) {
+        String[] fields = {"USERNAME"};
+        insertDAO.createUser(SqliteConnection.commandInsert("TB_SCORE", fields, informations));
     }
 
     public void validUsername(String username) throws MinimumAmountOfFieldNotReported, FieldValueNotInformed {
