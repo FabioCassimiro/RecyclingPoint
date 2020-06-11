@@ -70,7 +70,6 @@ public class SqliteConnection {
                 counting++;
             }
         }
-        System.out.println(insertQuery);
 
         counting = 0;
         System.out.println(counting);
@@ -102,7 +101,6 @@ public class SqliteConnection {
             }
 
         }
-        System.out.println(updateQuery);
         return updateQuery;
     }
 
