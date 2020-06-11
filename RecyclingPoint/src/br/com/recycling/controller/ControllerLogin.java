@@ -3,6 +3,11 @@ package br.com.recycling.controller;
 import br.com.recycling.exception.FieldValueNotInformed;
 import br.com.recycling.exception.UserNotFound;
 import br.com.recycling.model.ConsultDAO;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *

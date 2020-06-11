@@ -57,13 +57,13 @@ public class ControllerRegister {
     }
 
     public void CPFRegistered(String cpf) throws RegisteredUserException {
-        if (consultDAO.consultUser("CPF", cpf)) {
+        if (consultDAO.consultUser("TB_PEOPLE","CPF", cpf)) {
             throw new RegisteredUserException("User Registered");
         }
     }
 
     public void UserRegistered(String username) throws RegisteredUserException {
-        if (consultDAO.consultUser("USERNAME", username)) {
+        if (consultDAO.consultUser("TB_USER","USERNAME", username)) {
             throw new RegisteredUserException("User Registered");
         }
     }
