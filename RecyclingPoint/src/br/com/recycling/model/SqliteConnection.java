@@ -11,19 +11,25 @@ import javax.swing.JOptionPane;
  */
 public class SqliteConnection {
 
-    public static Connection conection() {
+    public static Connection connection;
 
-        Connection connection;
+    public static Connection conection() {;
         try {
-            Class.forName("org.sqlite.JDBC");
             return connection = DriverManager.getConnection("jdbc:sqlite:database/RecyclingDB.db");
         } catch (SQLException sql) {
             JOptionPane.showMessageDialog(null, "Connection error with the Database");
-        } catch (ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(null, "Class not found");
         }
-
         return null;
+    }
+
+    public static void cancelConnection() {
+        try {
+            if (connection.isClosed() == false) {
+                connection.close();
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
     }
 
     public static String commandSelect(String table, String[] fields, String[] values) {
@@ -62,7 +68,7 @@ public class SqliteConnection {
             }
         }
         System.out.println(insertQuery);
-        
+
         counting = 0;
         System.out.println(counting);
         while (counting < fields.length) {
@@ -93,7 +99,7 @@ public class SqliteConnection {
             }
 
         }
-
+        System.out.println(updateQuery);
         return updateQuery;
     }
 

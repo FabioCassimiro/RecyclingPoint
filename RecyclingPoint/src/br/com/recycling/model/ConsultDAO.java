@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class ConsultDAO {
 
     public static ArrayList<String> values = new ArrayList<>();
+    public static String username;
 
     public boolean consultUser(String field, String value) {
         String[] fields = {field};
@@ -26,13 +27,7 @@ public class ConsultDAO {
         } catch (SQLException ex) {
             //Adicionar tratamento de exception
         } finally {
-            try {
-                if (SqliteConnection.conection() != null) {
-                    SqliteConnection.conection().close();
-                }
-            } catch (SQLException e) {
-            }
-
+            SqliteConnection.cancelConnection();
         }
         return false;
     }
@@ -46,19 +41,15 @@ public class ConsultDAO {
             statement.setQueryTimeout(30);
             row = statement.executeQuery(SqliteConnection.commandSelect("TB_USER", fields, values));
             if (user.equals(row.getString("USERNAME")) && password.equals(row.getString("PASSWORD"))) {
+                username = row.getString("USERNAME");
                 return true;
             }
         } catch (SQLException ex) {
             //Adicionar tratamento de exception
         } finally {
-            try {
-                if (SqliteConnection.conection() != null) {
-                    SqliteConnection.conection().close();
-                }
-            } catch (SQLException e) {
-            }
-
+            SqliteConnection.cancelConnection();
         }
+        
         return false;
     }
 
@@ -82,6 +73,8 @@ public class ConsultDAO {
             return values;
         } catch (SQLException ex) {
             ex.printStackTrace();
+        }finally{
+             SqliteConnection.cancelConnection();
         }
         return null;
     }
