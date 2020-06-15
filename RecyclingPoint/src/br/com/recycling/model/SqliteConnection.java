@@ -3,6 +3,8 @@ package br.com.recycling.model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,9 +17,12 @@ public class SqliteConnection {
     
     public static Connection connection() {
         try {
-            return connection = DriverManager.getConnection("jdbc:sqlite:database/RecyclingDB.db");
+            Class.forName("org.sqlite.JDBC");
+            return connection = DriverManager.getConnection("jdbc:sqlite:../database/RecyclingDB.db");
         } catch (SQLException sql) {
             JOptionPane.showMessageDialog(null, "Connection error with the Database");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SqliteConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

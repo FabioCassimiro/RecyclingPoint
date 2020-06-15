@@ -3,14 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/WINDOWS/Documents/GitHub/RecyclingPoint/RecyclingPoint/src/br/com/recycling/controller/ControllerRecycling.java</file>
-            <file>file:/C:/Users/WINDOWS/Documents/GitHub/RecyclingPoint/RecyclingPoint/src/br/com/recycling/model/ChangeDAO.java</file>
-            <file>file:/C:/Users/WINDOWS/Documents/GitHub/RecyclingPoint/RecyclingPoint/src/br/com/recycling/viewer/Score.java</file>
-            <file>file:/C:/Users/WINDOWS/Documents/GitHub/RecyclingPoint/RecyclingPoint/src/br/com/recycling/app/RecyclingPoint.java</file>
             <file>file:/C:/Users/WINDOWS/Documents/GitHub/RecyclingPoint/RecyclingPoint/src/br/com/recycling/model/ConsultDAO.java</file>
+            <file>file:/C:/Users/WINDOWS/Documents/GitHub/RecyclingPoint/RecyclingPoint/src/br/com/recycling/viewer/Login.java</file>
             <file>file:/C:/Users/WINDOWS/Documents/GitHub/RecyclingPoint/RecyclingPoint/src/br/com/recycling/model/SqliteConnection.java</file>
-            <file>file:/C:/Users/WINDOWS/Documents/GitHub/RecyclingPoint/RecyclingPoint/src/br/com/recycling/viewer/FinalThanks.java</file>
-            <file>file:/C:/Users/WINDOWS/Documents/GitHub/RecyclingPoint/RecyclingPoint/src/br/com/recycling/model/InsertDAO.java</file>
         </group>
     </open-files>
 </project-private>

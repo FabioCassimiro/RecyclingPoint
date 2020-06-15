@@ -89,8 +89,10 @@ public class Login extends JFrame implements ClassInterface {
     public void fields() {
         txfUsername = DefaultComponents.defaultFields(100, 350);
         txfUsername.setSize(300, 35);
+        txfUsername.setText("adminmaster");
         pwdPassword = DefaultComponents.defaultFieldsPassword(100, 425);
         pwdPassword.setSize(300, 35);
+        pwdPassword.setText("adminmaster");
 
         pnlLogin.add(txfUsername);
         pnlLogin.add(pwdPassword);
