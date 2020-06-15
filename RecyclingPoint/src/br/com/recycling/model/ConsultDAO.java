@@ -66,7 +66,6 @@ public class ConsultDAO {
                 resultSet.close();
             SqliteConnection.closeConnection();
             } catch (SQLException ex) {
-                System.err.println(ex.getMessage());
             }
         }
 

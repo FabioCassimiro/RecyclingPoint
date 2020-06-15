@@ -22,11 +22,11 @@ import javax.swing.JTextField;
  */
 public class Login extends JFrame implements ClassInterface {
 
-    DefaultPanel pnlLogin = new DefaultPanel();
-    DefaultComponents components = new DefaultComponents();
-    ControllerLogin controller = new ControllerLogin();
-    JTextField txfUsername;
-    JPasswordField pwdPassword;
+    private DefaultPanel pnlLogin = new DefaultPanel();
+    private DefaultComponents components = new DefaultComponents();
+    private ControllerLogin controller = new ControllerLogin();
+    private JTextField txfUsername;
+    private JPasswordField pwdPassword;
 
     public Login() {
         panelInit();
@@ -90,10 +90,8 @@ public class Login extends JFrame implements ClassInterface {
     public void fields() {
         txfUsername = DefaultComponents.defaultFields(100, 350);
         txfUsername.setSize(300, 35);
-        txfUsername.setText("adminmaster");
         pwdPassword = DefaultComponents.defaultFieldsPassword(100, 425);
         pwdPassword.setSize(300, 35);
-        pwdPassword.setText("adminmaster");
 
         pnlLogin.add(txfUsername);
         pnlLogin.add(pwdPassword);
