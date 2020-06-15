@@ -45,6 +45,7 @@ public class Recycling extends JFrame implements ClassInterface {
 
     @Override
     public void panelInit() {
+        pnlRecycling.add(DefaultComponents.montaBtnMinimizar(this));
         add(pnlRecycling);
         labels();
         buttons();

@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.text.ParseException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -82,14 +83,28 @@ public class DefaultComponents {
 
         return btnDefault;
     }
-    
-     public  void image(JPanel panel){
+
+    public void image(JPanel panel) {
         JLabel imageTree = new JLabel(searchImage("Tree.png"));
-        imageTree.setBounds(200,500,400,400);
+        imageTree.setBounds(200, 500, 400, 400);
         JLabel imageInvertedTree = new JLabel(searchImage("InvertedTree.png"));
-        imageInvertedTree.setBounds(-100,-80,400,400);
-        
+        imageInvertedTree.setBounds(-100, -80, 400, 400);
+
         panel.add(imageTree);
         panel.add(imageInvertedTree);
+    }
+
+    public static JLabel montaBtnMinimizar(JFrame janela) {
+        JLabel minimizar = new JLabel("_");
+        minimizar.setForeground(Color.WHITE);
+        minimizar.setFont(new Font("Arial", Font.BOLD, 30));
+        minimizar.setBounds(440, -7, 20, 30);
+        minimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                janela.setExtendedState(JFrame.ICONIFIED);
+            }
+        });
+        return minimizar;
     }
 }

@@ -31,6 +31,7 @@ public class FinalThanks extends JFrame implements ClassInterface {
 
     @Override
     public void panelInit() {
+        pnlFinalThanks.add(DefaultComponents.montaBtnMinimizar(this));
         add(pnlFinalThanks);
         labels();
         buttons();

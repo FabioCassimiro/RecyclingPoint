@@ -38,6 +38,7 @@ public class Loading extends JFrame implements ClassInterface {
 
     @Override
     public void panelInit() {
+        pnlLoading.add(DefaultComponents.montaBtnMinimizar(this));
         add(pnlLoading);
         labels();
         fields();

@@ -38,6 +38,7 @@ public class Login extends JFrame implements ClassInterface {
 
     @Override
     public void panelInit() {
+        pnlLogin.add(DefaultComponents.montaBtnMinimizar(this));
         add(pnlLogin);
         labels();
         buttons();

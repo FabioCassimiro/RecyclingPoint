@@ -33,6 +33,7 @@ public class Score extends JFrame implements ClassInterface {
 
     @Override
     public void panelInit() {
+        pnlScore.add(DefaultComponents.montaBtnMinimizar(this));
         add(pnlScore);
         labels();
         buttons();

@@ -18,7 +18,7 @@ public class SqliteConnection {
     public static Connection connection() {
         try {
             Class.forName("org.sqlite.JDBC");
-            return connection = DriverManager.getConnection("jdbc:sqlite:../database/RecyclingDB.db");
+            return connection = DriverManager.getConnection("jdbc:sqlite:database/RecyclingDB.db");
         } catch (SQLException sql) {
             JOptionPane.showMessageDialog(null, "Connection error with the Database");
         } catch (ClassNotFoundException ex) {

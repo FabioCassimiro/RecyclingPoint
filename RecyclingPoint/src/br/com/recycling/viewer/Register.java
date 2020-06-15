@@ -53,6 +53,7 @@ public class Register extends JFrame implements ClassInterface {
 
     @Override
     public void panelInit() {
+        pnlRegister.add(DefaultComponents.montaBtnMinimizar(this));
         add(pnlRegister);
         fields();
         labels();
