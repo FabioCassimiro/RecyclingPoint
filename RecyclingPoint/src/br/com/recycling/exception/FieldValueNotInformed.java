@@ -1,4 +1,3 @@
-
 package br.com.recycling.exception;
 
 /**
@@ -11,6 +10,4 @@ public class FieldValueNotInformed extends Exception {
         super(msg);
     }
 
-    public FieldValueNotInformed() {
-    }
 }

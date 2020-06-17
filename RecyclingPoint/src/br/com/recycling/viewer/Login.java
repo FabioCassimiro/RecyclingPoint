@@ -20,6 +20,7 @@ import javax.swing.JTextField;
  *
  * @author Fabio Cassimiro
  */
+
 public class Login extends JFrame implements ClassInterface {
 
     private DefaultPanel pnlLogin = new DefaultPanel();

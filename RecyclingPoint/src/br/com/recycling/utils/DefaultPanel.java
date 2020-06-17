@@ -28,7 +28,7 @@ public class DefaultPanel extends JPanel {
         buttonClose.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                if (JOptionPane.showConfirmDialog(null, "You really want to leave? ", "RecyclingPoint",JOptionPane.YES_NO_OPTION) == 0) {
+                if (JOptionPane.showConfirmDialog(null, "You really want to leave? ", "RecyclingPoint", JOptionPane.YES_NO_OPTION) == 0) {
                     System.exit(0);
                 }
 

@@ -1,7 +1,7 @@
 package br.com.recycling.controller;
 
 import br.com.recycling.exception.FieldValueNotInformed;
-import br.com.recycling.exception.MinimumAmountOfFieldNotReported;
+import br.com.recycling.exception.MinimumQuantityOfFieldNotReported;
 import br.com.recycling.model.ChangeDAO;
 import br.com.recycling.model.ConsultDAO;
 import java.util.ArrayList;
@@ -26,9 +26,9 @@ public class ControllerRecycling {
 
     }
 
-    public void validValue(String amout) throws MinimumAmountOfFieldNotReported {
+    public void validValue(String amout) throws MinimumQuantityOfFieldNotReported {
         if (amout.equals("0")) {
-            throw new MinimumAmountOfFieldNotReported("Unreported quantity");
+            throw new MinimumQuantityOfFieldNotReported("Unreported quantity");
         }
     }
 
@@ -37,7 +37,7 @@ public class ControllerRecycling {
             throw new FieldValueNotInformed("Unreported item");
         }
     }
-    
+
     public String calcScore() {
         return String.valueOf(Integer.parseInt(ConsultDAO.values.get(2)) * quantity);
     }
@@ -49,7 +49,7 @@ public class ControllerRecycling {
             return String.valueOf(Integer.parseInt(ConsultDAO.values.get(3)) * quantity);
         }
     }
-    
+
     public String newScore() {
         return String.valueOf(Integer.parseInt(finalValues.get(2)) + Integer.parseInt(ConsultDAO.consultScore()));
     }

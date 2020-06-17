@@ -43,7 +43,7 @@ public class FinalThanks extends JFrame implements ClassInterface {
     public void labels() {
         pnlFinalThanks.add(DefaultComponents.defaultLabels("Thank you very much!", new Font("Arial", Font.BOLD, 42), 25, 220, 450, 45));
         pnlFinalThanks.add(DefaultComponents.defaultLabels("From: Planet", new Font("Arial", Font.PLAIN, 25), 300, 260, 200, 30));
-        pnlFinalThanks.add(DefaultComponents.defaultLabels("New Score: "+ConsultDAO.consultScore(), new Font("Arial", Font.BOLD, 25), 137, 100, 210, 30));
+        pnlFinalThanks.add(DefaultComponents.defaultLabels("New Score: " + ConsultDAO.consultScore(), new Font("Arial", Font.BOLD, 25), 137, 100, 210, 30));
         pnlFinalThanks.add(DefaultComponents.defaultLabels("Want to continue recycling?", new Font("Arial", Font.BOLD, 25), 80, 450, 340, 30));
     }
 

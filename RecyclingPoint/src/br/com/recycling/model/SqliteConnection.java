@@ -77,7 +77,7 @@ public class SqliteConnection {
         }
 
         counting = 0;
-        System.out.println(counting);
+        
         while (counting < fields.length) {
             if (counting == (fields.length - 1)) {
                 insertQuery += "'" + values[counting] + "')";

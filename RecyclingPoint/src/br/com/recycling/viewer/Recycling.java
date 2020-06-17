@@ -2,7 +2,7 @@ package br.com.recycling.viewer;
 
 import br.com.recycling.controller.ControllerRecycling;
 import br.com.recycling.exception.FieldValueNotInformed;
-import br.com.recycling.exception.MinimumAmountOfFieldNotReported;
+import br.com.recycling.exception.MinimumQuantityOfFieldNotReported;
 import br.com.recycling.utils.ClassInterface;
 import br.com.recycling.utils.DefaultComponents;
 import br.com.recycling.utils.DefaultPanel;
@@ -27,13 +27,13 @@ import javax.swing.SpinnerNumberModel;
  */
 public class Recycling extends JFrame implements ClassInterface {
 
-    DefaultComponents components = new DefaultComponents();
-    DefaultPanel pnlRecycling = new DefaultPanel();
-    ControllerRecycling controller = new ControllerRecycling();
-    JLabel imgItem;
-    JPanel panel;
-    JComboBox cmbItems;
-    JSpinner spnAmount;
+    private DefaultComponents components = new DefaultComponents();
+    private DefaultPanel pnlRecycling = new DefaultPanel();
+    private ControllerRecycling controller = new ControllerRecycling();
+    private JLabel imgItem;
+    private JPanel panelItem;
+    private JComboBox cmbItems;
+    private JSpinner spnQuantity;
 
     public Recycling() {
         panelInit();
@@ -50,7 +50,7 @@ public class Recycling extends JFrame implements ClassInterface {
         labels();
         buttons();
         fields();
-        panel();
+        panelItem();
         components.image(pnlRecycling);
     }
 
@@ -72,12 +72,12 @@ public class Recycling extends JFrame implements ClassInterface {
             }
         });
 
-        spnAmount = new JSpinner(new SpinnerNumberModel(0, 0, 10, 1));
-        spnAmount.setBounds(215, 575, 70, 60);
-        spnAmount.setBorder(null);
-        spnAmount.setFont(new Font("Arial", Font.BOLD, 35));
+        spnQuantity = new JSpinner(new SpinnerNumberModel(0, 0, 10, 1));
+        spnQuantity.setBounds(215, 575, 70, 60);
+        spnQuantity.setBorder(null);
+        spnQuantity.setFont(new Font("Arial", Font.BOLD, 35));
 
-        pnlRecycling.add(spnAmount);
+        pnlRecycling.add(spnQuantity);
         pnlRecycling.add(cmbItems);
     }
 
@@ -104,15 +104,15 @@ public class Recycling extends JFrame implements ClassInterface {
         pnlRecycling.add(btnRecycling);
     }
 
-    public void panel() {
-        panel = new JPanel();
-        panel.setLayout(null);
-        panel.setBackground(Color.WHITE);
-        panel.setBounds(75, 60, 350, 450);
+    public void panelItem() {
+        panelItem = new JPanel();
+        panelItem.setLayout(null);
+        panelItem.setBackground(Color.WHITE);
+        panelItem.setBounds(75, 60, 350, 450);
         imgItem = DefaultComponents.defaultLabels("", null, 15, 50, 320, 350);
-        panel.add(imgItem);
+        panelItem.add(imgItem);
 
-        pnlRecycling.add(panel);
+        pnlRecycling.add(panelItem);
     }
 
     public void displaysImages() {
@@ -126,8 +126,8 @@ public class Recycling extends JFrame implements ClassInterface {
     public void validRecycling() throws FieldValueNotInformed {
         try {
             controller.validItem(String.valueOf(cmbItems.getSelectedItem()));
-            controller.validValue(String.valueOf(spnAmount.getValue()));
-        } catch (FieldValueNotInformed | MinimumAmountOfFieldNotReported ex) {
+            controller.validValue(String.valueOf(spnQuantity.getValue()));
+        } catch (FieldValueNotInformed | MinimumQuantityOfFieldNotReported ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "RecyclingPoint", JOptionPane.WARNING_MESSAGE);
             throw new FieldValueNotInformed("it was not possible to recycle");
         }
@@ -135,7 +135,7 @@ public class Recycling extends JFrame implements ClassInterface {
 
     public void recycling() {
         try {
-            controller.Recycling(String.valueOf(cmbItems.getSelectedItem()), String.valueOf(spnAmount.getValue()));
+            controller.Recycling(String.valueOf(cmbItems.getSelectedItem()), String.valueOf(spnQuantity.getValue()));
         } catch (FieldValueNotInformed ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "RecyclingPoint", JOptionPane.WARNING_MESSAGE);
         }

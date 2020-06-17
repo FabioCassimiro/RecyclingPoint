@@ -4,7 +4,7 @@ import br.com.recycling.controller.ControllerRegister;
 import br.com.recycling.exception.FieldValueNotInformed;
 import br.com.recycling.exception.InvalidEmailAddress;
 import br.com.recycling.exception.InvalidRegistration;
-import br.com.recycling.exception.MinimumAmountOfFieldNotReported;
+import br.com.recycling.exception.MinimumQuantityOfFieldNotReported;
 import br.com.recycling.exception.PasswordsDontMatch;
 import br.com.recycling.exception.RegisteredUserException;
 import br.com.recycling.utils.ClassInterface;
@@ -27,6 +27,7 @@ import javax.swing.JTextField;
  *
  * @author Fabio Cassimiro
  */
+
 public class Register extends JFrame implements ClassInterface {
 
     private boolean enableFields = true;
@@ -108,7 +109,7 @@ public class Register extends JFrame implements ClassInterface {
             }
         });
 
-        btnLockerSearch = DefaultComponents.defaultButton("", Color.WHITE, 370, 120, 35, 35);
+        btnLockerSearch = DefaultComponents.defaultButton("", DefaultComponents.secundaryColor, 370, 120, 35, 35);
         btnLockerSearch.setIcon(components.searchImage("openlock.png"));
         btnLockerSearch.addActionListener(new ActionListener() {
             @Override
@@ -139,7 +140,7 @@ public class Register extends JFrame implements ClassInterface {
             controller.validEmailAddress(txfEmailAddress.getText());
             controller.UserRegistered(txfUsername.getText());
             controller.validPasswordEquality(pwdPassword.getText(), pwdConfirmPassword.getText());
-        } catch (RegisteredUserException | InvalidEmailAddress | PasswordsDontMatch | FieldValueNotInformed | MinimumAmountOfFieldNotReported ex) {
+        } catch (RegisteredUserException | InvalidEmailAddress | PasswordsDontMatch | FieldValueNotInformed | MinimumQuantityOfFieldNotReported ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "RecyclingPoint", JOptionPane.WARNING_MESSAGE);
             throw new InvalidRegistration("Error when registering");
         }

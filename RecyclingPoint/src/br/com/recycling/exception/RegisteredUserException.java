@@ -2,7 +2,7 @@ package br.com.recycling.exception;
 
 /**
  *
- * @author WINDOWS
+ * @author Fabio Cassimiro
  */
 public class RegisteredUserException extends Exception {
 

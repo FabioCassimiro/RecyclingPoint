@@ -1,12 +1,7 @@
 
 package br.com.recycling.app;
 
-import br.com.recycling.viewer.FinalThanks;
-import br.com.recycling.viewer.Loading;
 import br.com.recycling.viewer.Login;
-import br.com.recycling.viewer.Recycling;
-import br.com.recycling.viewer.Register;
-import br.com.recycling.viewer.Score;
 
 /**
  *

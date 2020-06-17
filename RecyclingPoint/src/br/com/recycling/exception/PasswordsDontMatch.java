@@ -1,15 +1,11 @@
-
 package br.com.recycling.exception;
 
 /**
  *
- * @author WINDOWS
+ * @author Fabio Cassimiro
  */
 public class PasswordsDontMatch extends Exception {
 
-    public PasswordsDontMatch() {
-        
-    }
     public PasswordsDontMatch(String msg) {
         super(msg);
     }

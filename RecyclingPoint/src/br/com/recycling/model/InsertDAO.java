@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author WINDOWS
+ * @author Fabio Cassimiro
  */
 public class InsertDAO {
 
@@ -20,7 +20,7 @@ public class InsertDAO {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Unable to register user", "RecyclingPoint", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
-        }finally{
+        } finally {
             try {
                 SqliteConnection.connection().close();
             } catch (SQLException ex) {

@@ -3,7 +3,7 @@ package br.com.recycling.exception;
 
 /**
  *
- * @author WINDOWS
+ * @author Fabio Cassimiro
  */
 public class InvalidEmailAddress extends Exception {
 

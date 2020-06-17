@@ -16,6 +16,7 @@ import javax.swing.JProgressBar;
  *
  * @author Fabio Cassimiro
  */
+
 public class Loading extends JFrame implements ClassInterface {
 
     private DefaultComponents components = new DefaultComponents();

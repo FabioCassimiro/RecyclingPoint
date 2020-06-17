@@ -15,13 +15,14 @@ import javax.swing.JLabel;
  *
  * @author Fabio Cassimiro
  */
+
 public class Score extends JFrame implements ClassInterface {
 
-    DefaultPanel pnlScore = new DefaultPanel();
-    DefaultComponents components = new DefaultComponents();
-    JLabel trashCan;
-    JLabel lblItem;
-    JLabel lblScore;
+    private DefaultPanel pnlScore = new DefaultPanel();
+    private DefaultComponents components = new DefaultComponents();
+    private JLabel trashCan;
+    private JLabel lblItem;
+    private JLabel lblScore;
 
     public Score() {
         panelInit();
@@ -46,14 +47,15 @@ public class Score extends JFrame implements ClassInterface {
     public void labels() {
         pnlScore.add(DefaultComponents.defaultLabels("Congratulations on your beautiful attitude.", new Font("Arial", Font.BOLD, 20), 45, 650, 405, 30));
         pnlScore.add(DefaultComponents.defaultLabels("Generated Score:", new Font("Arial", Font.BOLD, 30), 120, 100, 255, 35));
-        lblScore = DefaultComponents.defaultLabels(ControllerRecycling.finalValues.get(2), new Font("Arial", Font.BOLD, 30), 215, 140, 100, 35);
         pnlScore.add(DefaultComponents.defaultLabels("Item:", new Font("Arial", Font.BOLD, 30), 210, 250, 80, 35));
+        pnlScore.add(DefaultComponents.defaultLabels("Trash Can:", new Font("Arial", Font.BOLD, 30), 165, 370, 170, 35));
+
+        lblScore = DefaultComponents.defaultLabels(ControllerRecycling.finalValues.get(2), new Font("Arial", Font.BOLD, 30), 215, 140, 100, 35);
         lblItem = DefaultComponents.defaultLabels(ControllerRecycling.finalValues.get(0), new Font("Arial", Font.BOLD, 25), 160, 290, 180, 27);
         lblItem.setForeground(DefaultComponents.secundaryColor);
-        pnlScore.add(DefaultComponents.defaultLabels("Trash Can:", new Font("Arial", Font.BOLD, 30), 165, 370, 170, 35));
+
         trashCan = DefaultComponents.defaultLabels("", null, 195, 410, 110, 160);
         trashCan.setIcon(components.searchImage(ControllerRecycling.finalValues.get(1) + ".png"));
-        
 
         pnlScore.add(trashCan);
         pnlScore.add(lblItem);

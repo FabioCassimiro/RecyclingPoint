@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author WINDOWS
+ * @author Fabio Cassimiro
  */
 public class ConsultDAO {
 
@@ -24,23 +24,19 @@ public class ConsultDAO {
         String[] values = {value};
         ResultSet resultSet = null;
         Statement statement = null;
-        Connection conn = null;
 
         try {
-            Class.forName("org.sqlite.jdbc3.JDBC3Connection");
-            conn = DriverManager.getConnection("jdbc:sqlite:database/RecyclingDB.db");
-            statement = conn.createStatement();
+
+            statement = SqliteConnection.connection().createStatement();
             statement.setQueryTimeout(30);
             resultSet = statement.executeQuery(SqliteConnection.commandSelect(table, fields, values));
             return resultSet.next();
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ConsultDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {   
-                SqliteConnection.closeConnection();
-            
+        } finally {
+            SqliteConnection.closeConnection();
+
         }
         return false;
     }
@@ -62,9 +58,14 @@ public class ConsultDAO {
             System.err.println(ex.getMessage());
         } finally {
             try {
-                statement.close();
-                resultSet.close();
-            SqliteConnection.closeConnection();
+                if (statement.isClosed() == false) {
+                    statement.close();
+                }
+                if (resultSet.isClosed() == false) {
+                    resultSet.close();
+                }
+
+                SqliteConnection.closeConnection();
             } catch (SQLException ex) {
             }
         }

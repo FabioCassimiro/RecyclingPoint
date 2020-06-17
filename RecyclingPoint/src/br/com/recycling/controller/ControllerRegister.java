@@ -2,7 +2,7 @@ package br.com.recycling.controller;
 
 import br.com.recycling.exception.FieldValueNotInformed;
 import br.com.recycling.exception.InvalidEmailAddress;
-import br.com.recycling.exception.MinimumAmountOfFieldNotReported;
+import br.com.recycling.exception.MinimumQuantityOfFieldNotReported;
 import br.com.recycling.exception.PasswordsDontMatch;
 import br.com.recycling.exception.RegisteredUserException;
 import br.com.recycling.model.ConsultDAO;
@@ -19,37 +19,37 @@ public class ControllerRegister {
     ConsultDAO consultDAO = new ConsultDAO();
 
     public void createUser(String[] informations) {
-        String[] fields = {"EMAIL","USERNAME", "PASSWORD"};
+        String[] fields = {"EMAIL", "USERNAME", "PASSWORD"};
         insertDAO.createUser(SqliteConnection.commandInsert("TB_USER", fields, informations));
     }
-    
+
     public void createPeople(String[] informations) {
         String[] fields = {"CPF", "NAME", "LASTNAME"};
         insertDAO.createUser(SqliteConnection.commandInsert("TB_PEOPLE", fields, informations));
     }
-    
+
     public void createScore(String[] informations) {
         String[] fields = {"USERNAME"};
         insertDAO.createUser(SqliteConnection.commandInsert("TB_SCORE", fields, informations));
     }
 
-    public void validUsername(String username) throws MinimumAmountOfFieldNotReported, FieldValueNotInformed {
-        
+    public void validUsername(String username) throws MinimumQuantityOfFieldNotReported, FieldValueNotInformed {
+
         if (username.equals("")) {
             throw new FieldValueNotInformed("Username not informed");
-        }else if (username.length() > 0 && username.length() < 8) {
-            throw new MinimumAmountOfFieldNotReported("Username field must be at least 8 characters long");
+        } else if (username.length() > 0 && username.length() < 8) {
+            throw new MinimumQuantityOfFieldNotReported("Username field must be at least 8 characters long");
         }
     }
 
-    public void validPassword(String password, String confirmPassword) throws MinimumAmountOfFieldNotReported, FieldValueNotInformed {   
+    public void validPassword(String password, String confirmPassword) throws MinimumQuantityOfFieldNotReported, FieldValueNotInformed {
         if (password.equals("") || confirmPassword.equals("")) {
             throw new FieldValueNotInformed("Password not informed");
-        }else if (password.length() > 0 && password.length() < 8) {
-            throw new MinimumAmountOfFieldNotReported("Password field must be at least 8 characters long");
+        } else if (password.length() > 0 && password.length() < 8) {
+            throw new MinimumQuantityOfFieldNotReported("Password field must be at least 8 characters long");
         }
     }
-    
+
     public void validNameLastname(String name, String lastname) throws FieldValueNotInformed {
         if (name.equals("") || lastname.equals("")) {
             throw new FieldValueNotInformed("Field name or lastname not informed");
@@ -57,13 +57,13 @@ public class ControllerRegister {
     }
 
     public void CPFRegistered(String cpf) throws RegisteredUserException {
-        if (consultDAO.consultUser("TB_PEOPLE","CPF", cpf)) {
+        if (consultDAO.consultUser("TB_PEOPLE", "CPF", cpf)) {
             throw new RegisteredUserException("User Registered");
         }
     }
 
     public void UserRegistered(String username) throws RegisteredUserException {
-        if (consultDAO.consultUser("TB_USER","USERNAME", username)) {
+        if (consultDAO.consultUser("TB_USER", "USERNAME", username)) {
             throw new RegisteredUserException("User Registered");
         }
     }
@@ -82,5 +82,4 @@ public class ControllerRegister {
         }
     }
 
-    
 }
